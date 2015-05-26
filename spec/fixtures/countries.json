@@ -1,0 +1,5 @@
+[
+  { "iso": "JM", "name": "Jamaica", "zones": ["International"] },
+  { "iso": "PK", "name": "Pakistan", "zones": ["Domestic", "Asia"] },
+  { "iso": "LK", "name": "Sri Lanka", "zones": ["International", "Asia"] }
+]

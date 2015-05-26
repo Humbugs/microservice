@@ -1,40 +1,40 @@
+require 'order/builder'
 require 'order/totaller'
-require_relative '../fixtures'
+require 'resources'
 
 module Order
   describe Totaller do
-    let(:order) do
-      order = OrderEntity.new
-      order.basket = { PRODUCTS['bag'] => 3, PRODUCTS['shoe'] => 2 }
-      order.delivery = METHODS['Standard']
-      order
-    end
+    let(:order) { Builder.build(JSON.parse(json_file('order'))) }
 
     it 'calculates total with fixed calculator' do
-      expect(Totaller.total(order)).to eql(35.66)
+      order.delivery = Resources.delivery_methods['International']
+      expect(Totaller.total(order, 1)).to eql(59.8)
     end
 
     it 'calculates total with percent calculator' do
-      order.delivery = METHODS['Express']
-      expect(Totaller.total(order)).to eql(37.9)
+      args = { 'field' => 'price', 'percent' => 20 }
+      order.delivery = DeliveryMethodEntity.new(calculator: 'Percent', args: args)
+      expect(Totaller.total(order, 1)).to eql(47.76)
     end
 
     describe 'tiered calcualtor' do
-      before { order.delivery = METHODS['Tracked'] }
-
       it 'calculates' do
-        expect(Totaller.total(order)).to eql(33.88)
+        expect(Totaller.total(order, 1)).to eql(42.18)
       end
 
       it 'exclusive upperbounds, inclusive lowerbounds' do
-        order.basket = { PRODUCTS['hat'] => 3 }
-        expect(Totaller.total(order)).to eql(36.1)
+        order.basket['Bonbons'][:quantity] = 750
+        expect(Totaller.total(order, 1)).to eql(105.38)
       end
 
       it 'raise if not available' do
-        order.basket = { PRODUCTS['hat'] => 25 }
-        expect { Totaller.total(order) }.to raise_error(DeliveryNotApplicable)
+        order.basket['Bonbons'][:quantity] = 20000
+        expect { Totaller.total(order, 1) }.to raise_error(DeliveryNotApplicable)
       end
+    end
+
+    it 'mutliplies delivery cost for multiple packings' do
+      expect(Totaller.total(order, 2)).to eql(44.56)
     end
   end
 end

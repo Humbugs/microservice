@@ -12,13 +12,19 @@ module Order
         order
       end
 
+      def build_basket(json)
+        order = OrderEntity.new(json)
+        build_products(order)
+        order
+      end
+
       private
 
       def build_products(order)
         order.basket = order.basket.map do |name, quantity|
           product = Resources.products[name]
           fail(ProductNotFound, name) unless product
-          [product, quantity]
+          [name, { product: product, quantity: quantity }]
         end
       end
 

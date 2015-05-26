@@ -1,45 +1,24 @@
 require 'order/builder'
-require_relative '../fixtures'
+require 'json'
 
 module Order
   describe Builder do
-    let(:json) do
-      {
-        'basket' => { 'bag' => 3, 'shoe' => 2 },
-        'customer' => {
-          'name' => 'George Hendrix',
-          'email' => 'ggtop45@example.com'
-        },
-        'address' => {
-          'address1' => '45 Station Road',
-          'address2' => '',
-          'city' => 'Shrovesbury',
-          'county' => 'Wessex',
-          'country' => 'LK',
-          'postcode' => 'WE34 9DU'
-        },
-        'delivery' => 'Express',
-        'token' => 'FIFJ3453GFH56',
-        'currency' => 'GBP',
-        'total' => '37.9'
-      }
-    end
-
-    before do
-      allow(Resources).to receive(:products).and_return(PRODUCTS)
-      allow(Resources).to receive(:countries).and_return(COUNTRIES)
-      allow(Resources).to receive(:delivery_methods).and_return(METHODS)
-    end
+    let(:json) { JSON.parse(json_file('order')) }
 
     it 'build for valid order' do
       order = Builder.build(json)
-      expect(order.basket).to eql(PRODUCTS['bag'] => 3, PRODUCTS['shoe'] => 2)
-      expect(order.address['country']).to eql(COUNTRIES['LK'])
-      expect(order.delivery).to eql(METHODS['Express'])
+      basket = {
+        'Wham Bar' => { product: Resources.products['Wham Bar'], quantity: 1 },
+        'Bonbons' => { product: Resources.products['Bonbons'], quantity: 250 },
+        'Cola Bottles' => { product: Resources.products['Cola Bottles'], quantity: 5 }
+      }
+      expect(order.basket).to eql(basket)
+      expect(order.address['country']).to eql(Resources.countries['PK'])
+      expect(order.delivery).to eql(Resources.delivery_methods['Parcel 24'])
     end
 
     it 'returns failure if product not recognized' do
-      json['basket'].merge!('trolley' => 1)
+      json['basket'].merge!('shoe' => 1)
       expect { Builder.build(json) }.to raise_error(ProductNotFound)
     end
 

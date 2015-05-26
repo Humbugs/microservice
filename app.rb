@@ -5,6 +5,8 @@ require_relative 'lib/processor'
 require_relative 'lib/resources'
 require_relative 'lib/mailer'
 require_relative 'lib/environment'
+require_relative 'lib/order/builder'
+require_relative 'lib/order/packer'
 
 Environment.set
 
@@ -24,6 +26,13 @@ post '/purchase' do
   json = JSON.parse(request.body.read)
   order = Processor.process(json)
   { number: order.number }.to_json
+end
+
+post '/pack' do
+  content_type :json
+  json = JSON.parse(request.body.read)
+  order = Order::Builder.build_basket(json)
+  Order::Packer.pack_all(order).to_json
 end
 
 post '/reset' do

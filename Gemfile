@@ -8,6 +8,7 @@ gem 'erubis'
 gem 'tilt'
 gem 'paymill'
 gem 'roadie'
+gem 'box_packer'
 
 group :development, :test do
   gem 'rspec'

@@ -1,0 +1,19 @@
+{
+  "basket": { "Wham Bar": 1, "Bonbons": 250, "Cola Bottles": 5 },
+  "customer": {
+    "name": "George Hendrix",
+    "email": "ggtop45@example.com"
+  },
+  "address": {
+    "address1": "45 Station Road",
+    "address2": "",
+    "city": "Shrovesbury",
+    "county": "Wessex",
+    "country": "PK",
+    "postcode": "WE34 9DU"
+  },
+  "delivery": "Parcel 24",
+  "token": "FIFJ3453GFH56",
+  "currency": "GBP",
+  "total": "42.18"
+}

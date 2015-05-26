@@ -1,13 +1,14 @@
 require 'open-uri'
 require 'json'
 require_relative 'entities'
+require_relative 'product/builder'
 
 module Resources
   class << self
     attr_accessor :front_url
 
     def products
-      @products ||= parse('products', ProductEntity, 'name')
+      @products ||= Product::Builder.build(parse('products', ProductEntity, 'name'))
     end
 
     def countries
@@ -18,10 +19,15 @@ module Resources
       @delivery_methods ||= parse('delivery-methods', DeliveryMethodEntity, 'name')
     end
 
+    def packing_types
+      @packing_types ||= parse('packing-types', PackingTypeEntity, 'name')
+    end
+
     def reset
       @products = nil
       @countries = nil
       @delivery_methods = nil
+      @packing_types = nil
     end
 
     private
@@ -30,8 +36,8 @@ module Resources
       full_url = "#{front_url}/#{url}.json"
 
       JSON.parse(open(full_url).read).reduce({}) do |hash, element|
-        hash.merge!(element[key] => klass.new(element).freeze)
-      end.freeze
+        hash.merge!(element[key] => klass.new(element))
+      end
     end
   end
 end

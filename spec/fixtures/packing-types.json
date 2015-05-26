@@ -1,0 +1,20 @@
+[
+  {
+    "name":  "Large Letter",
+    "width": 353,
+    "length": 250,
+    "depth": 25,
+    "weight_limit": 750,
+    "packings_limit": 2,
+    "weight": 25
+  },
+  {
+    "name": "Parcel",
+    "width": 610,
+    "length": 460,
+    "depth": 460,
+    "weight_limit": 20000,
+    "packings_limit": 10,
+    "weight": 50
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "name": "Large Letter 48",
+    "packing_type": "Large Letter",
+    "calculator": "Tiered",
+    "zones": ["Domestic"],
+    "args": {
+      "field": "weight",
+      "tiers": [[0, 0.56], [100, 0.8], [250, 1.02], [500, 1.38], [750]]
+    }
+  },
+  {
+    "name": "Large Letter 24",
+    "packing_type": "Large Letter",
+    "calculator": "Tiered",
+    "zones": ["Domestic"],
+    "args": {
+      "field": "weight",
+      "tiers": [[0, 0.69], [100, 0.97], [250, 1.26], [500, 1.69], [750]]
+    }
+  },
+  {
+    "name": "Parcel 48",
+    "packing_type": "Parcel",
+    "calculator": "Tiered",
+    "zones": ["Domestic"],
+    "args": {
+      "field": "weight",
+      "tiers": [
+        [0, 1.8], [1000, 2.45], [1250, 2.66], [1500, 2.99], [1750, 3.31], [2000]
+      ]
+    }
+  },
+  {
+    "name": "Parcel 24",
+    "packing_type": "Parcel",
+    "calculator": "Tiered",
+    "zones": ["Domestic"],
+    "args": {
+      "field": "weight",
+      "tiers": [
+        [0, 2.38], [1000, 3.08], [1250, 3.33], [1500, 3.74], [1750, 4.14],
+        [2000, 5.31], [2250, 5.61], [2500, 5.9], [2750, 6.2], [3000, 6.5],
+        [3250, 6.8], [3500, 7.09], [3750, 7.39], [4000, 8.13], [5000, 9.32],
+        [6000, 10.51], [7000, 11.7], [8000, 12.88], [9000, 14.07],
+        [10000, 15.26], [11000, 16.45], [12000, 17.64], [13000, 18.82],
+        [14000, 20.01], [15000, 21.2], [16000, 22.39], [17000, 23.58],
+        [18000, 24.76], [19000, 25.95], [20000]
+      ]
+    }
+  },
+  {
+    "name": "Tracked Parcel 48",
+    "packing_type": "Parcel",
+    "calculator": "Tiered",
+    "zones": ["Domestic"],
+    "args": {
+      "field": "weight",
+      "tiers": [
+        [0, 4.7], [1000, 5.58], [1250, 5.73], [1500, 6.69], [1750, 6.8], [2000]
+      ]
+    }
+  },
+  {
+    "name": "Tracked Parcel 24",
+    "packing_type": "Parcel",
+    "calculator": "Tiered",
+    "zones": ["Domestic"],
+    "args": {
+      "field": "weight",
+      "tiers": [
+        [0, 5.2], [1000, 5.73], [1250, 5.88], [1500, 6.84], [1750, 6.95],
+        [2000, 10.46], [3000, 10.79], [3500, 11.33], [4000, 12.29],
+        [5000, 13.99], [6000, 16.37], [7000, 17.74], [8000, 19.51],
+        [9000, 21.41], [10000, 23.25], [11000, 25.09], [12000, 27],
+        [13000, 28.77], [14000, 30.68], [15000]
+      ]
+    }
+  },
+  {
+    "name": "International",
+    "calculator": "Fixed",
+    "zones": ["International"],
+    "args": { "amount": 20 }
+  }
+]

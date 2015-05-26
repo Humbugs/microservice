@@ -17,8 +17,20 @@ end
 class ProductEntity
   include Virtus.model
   attribute :name, String
+  attribute :purchase_option, Integer
   attribute :price, BigDecimal
-  attribute :weight, BigDecimal
+  attribute :cost_price, BigDecimal
+  attribute :container_water_weight, Integer
+  attribute :container_sweets_weight, Integer
+  attribute :width, Integer
+  attribute :length, Integer
+  attribute :depth, Integer
+  attribute :weight, Integer
+  attr_accessor :density
+
+  def dimensions
+    [width, length, depth]
+  end
 end
 
 class CountryEntity
@@ -35,4 +47,19 @@ class DeliveryMethodEntity
   attribute :calculator, String
   attribute :args, Hash
   attribute :eta, String
+end
+
+class PackingTypeEntity
+  include Virtus.model
+  attribute :name, String
+  attribute :width, Integer
+  attribute :length, Integer
+  attribute :depth, Integer
+  attribute :packings_limit, Integer
+  attribute :weight_limit, Integer
+  attribute :weight, Integer
+
+  def dimensions
+    [width, length, depth]
+  end
 end

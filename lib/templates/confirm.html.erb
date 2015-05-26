@@ -22,12 +22,12 @@
         <tr>
           <td>
             <table class="invoice-items" cellpadding="0" cellspacing="0">
-            <% basket.each do |product, quantity| %>
+            <% basket.each do |name, hash| %>
               <tr>
-                <td><%= product.name %></td>
-                <td class="alignright">x<%= quantity %></td>
+                <td><%= hash[:product].name %></td>
+                <td class="alignright">x<%= hash[:quantity] %></td>
               </tr>
-              <% end %>
+            <% end %>
               <tr class="total">
                 <td class="alignright" width="80%">Total</td>
                 <td class="alignright">£<%= total.to_f %></td>

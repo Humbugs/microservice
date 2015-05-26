@@ -3,20 +3,24 @@ require_relative 'totaller'
 module Order
   module Validator
     class << self
-      def validate(order)
-        delivery_available(order)
-        total_matches(order)
+      def validate(order, packings)
+        delivery_available(order, packings)
+        total_matches(order, packings)
       end
 
       private
 
-      def delivery_available(order)
-        return unless (order.address['country'].zones & order.delivery.zones).empty?
+      def delivery_available(order, packings)
+        return if packings && address_available?(order)
         fail Undeliverable, order.delivery.name
       end
 
-      def total_matches(order)
-        return unless Totaller.total(order) != order.total
+      def address_available?(order)
+        (order.address['country'].zones & order.delivery.zones).any?
+      end
+
+      def total_matches(order, packings)
+        return unless Totaller.total(order, packings) != order.total
         fail TotalMismatch, order.total.to_f
       end
     end
