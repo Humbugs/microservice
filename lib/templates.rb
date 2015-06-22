@@ -27,6 +27,10 @@ module Templates
       @record ||= template('record.txt')
     end
 
+    def invoice
+      @invoice ||= template('invoice.txt')
+    end
+
     def layout
       @layout ||= template('layout.html')
     end

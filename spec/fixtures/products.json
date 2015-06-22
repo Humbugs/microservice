@@ -4,7 +4,8 @@
     "purchase_option": "0",
     "price": 7.30,
     "cost_price": 5.88,
-    "length": 138,
+    "height": 138,
+    "height": 138,
     "width": 89,
     "depth": 21,
     "weight": 95
@@ -12,8 +13,8 @@
   {
     "name": "Bonbons",
     "purchase_option": "1",
-    "price": 12.50,
-    "cost_price": 10.68,
+    "price": 0.125,
+    "cost_price": 0.1068,
     "container_water_weight": 919,
     "container_sweets_weight": 545
   },

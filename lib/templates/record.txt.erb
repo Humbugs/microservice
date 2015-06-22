@@ -1,7 +1,7 @@
 ---
 Order: <%= number %>
 Delivery: <%= delivery.name %>
-Total: £<%= total.to_f %>
+Total: £<%= '%.2f' % total %>
 
 Basket:
 <% basket.each do |name, hash| %>

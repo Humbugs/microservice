@@ -6,8 +6,8 @@ module Order
     extend self
 
     def pack_all(order)
-      Resources.packing_types.reduce({}) do |packings, (name, packing_type)|
-        packings.merge(name => pack(order, packing_type))
+      Resources.packing_types.reduce([]) do |packings, (name, packing_type)|
+        pack(order, packing_type) ? packings << name : packings
       end
     end
 
@@ -26,7 +26,7 @@ module Order
     def create_container(packing_type)
       BoxPacker.container(packing_type.dimensions, {
         weight_limit: packing_type.weight_limit - packing_type.weight,
-        packings_limit: packing_type.packings_limit
+        packings_limit: 1
       })
     end
 
@@ -41,10 +41,10 @@ module Order
     end
 
     def slices(packing_type, product, quantity)
-      _, length, depth = *packing_type.dimensions
-      slice_weight = length * depth * product.density
+      _, height, depth = *packing_type.dimensions
+      slice_weight = height * depth * product.density
       quantity = (quantity * product.weight / slice_weight).ceil
-      [[1, length, depth], quantity, slice_weight.round]
+      [[1, height, depth], quantity, slice_weight.round]
     end
   end
 end

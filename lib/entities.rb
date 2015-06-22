@@ -12,6 +12,8 @@ class OrderEntity
   attribute :token, String
   attribute :currency, String
   attribute :total, BigDecimal
+  attribute :cost_total, BigDecimal
+  attribute :delivery_total, BigDecimal
 end
 
 class ProductEntity
@@ -23,13 +25,13 @@ class ProductEntity
   attribute :container_water_weight, Integer
   attribute :container_sweets_weight, Integer
   attribute :width, Integer
-  attribute :length, Integer
+  attribute :height, Integer
   attribute :depth, Integer
   attribute :weight, Integer
   attr_accessor :density
 
   def dimensions
-    [width, length, depth]
+    [width, height, depth]
   end
 end
 
@@ -47,19 +49,19 @@ class DeliveryMethodEntity
   attribute :calculator, String
   attribute :args, Hash
   attribute :eta, String
+  attribute :packing_type
 end
 
 class PackingTypeEntity
   include Virtus.model
   attribute :name, String
   attribute :width, Integer
-  attribute :length, Integer
+  attribute :height, Integer
   attribute :depth, Integer
-  attribute :packings_limit, Integer
   attribute :weight_limit, Integer
   attribute :weight, Integer
 
   def dimensions
-    [width, length, depth]
+    [width, height, depth]
   end
 end

@@ -1,0 +1,11 @@
+---
+Order: <%= number %>
+Cost: £<%= '%.2f' % cost_total %>
+Delivery: £<%= '%.2f' % delivery_total %>
+Total: £<%= '%.2f' % total %>
+
+Basket:
+<% basket.each do |name, hash| %>
+  <%= hash[:product].name %> (x<%= hash[:quantity] %>)
+<% end %>
+---

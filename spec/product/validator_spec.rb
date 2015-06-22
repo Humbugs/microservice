@@ -22,8 +22,8 @@ module Product
     it('checks purchase_option') { check_presence('purchase_option') }
     it('checks price')           { check_presence('price')           }
     it('checks cost_price')      { check_presence('cost_price')      }
-    it('checks length')          { check_presence('length')          }
     it('checks width')           { check_presence('width')           }
+    it('checks height')          { check_presence('height')          }
     it('checks depth')           { check_presence('depth')           }
     it('checks weight')          { check_presence('weight')          }
 

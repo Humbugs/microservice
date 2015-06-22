@@ -6,18 +6,20 @@ module Order
       new.total(*args)
     end
 
-    def total(order, packings)
+    def total(order)
       @order = order
       @totals = Hash[total_fields.map { |f| [f, sum_field(f)] }]
       @totals['order'] = @totals['price']
-      @totals['order'] += delivery_amount * packings
+      @totals['order'] += delivery_amount
+      order.cost_total = @totals['cost_price']
+      order.delivery_total = delivery_amount
       @totals['order']
     end
 
     private
 
     def total_fields
-      %w(price weight)
+      %w(price weight cost_price)
     end
 
     def sum_field(field)

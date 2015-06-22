@@ -8,8 +8,8 @@ module Product
         presence(product, :cost_price)
         case product.purchase_option
         when 0
-          presence(product, :length)
           presence(product, :width)
+          presence(product, :height)
           presence(product, :depth)
           presence(product, :weight)
         when 1

@@ -5,7 +5,6 @@ describe Processor do
 
   it 'processes' do
     expect(Order::Builder).to receive(:build).and_return(order)
-    expect(Order::Packer).to receive(:pack)
     expect(Order::Validator).to receive(:validate)
     expect(Payment).to receive(:create).with(order)
     expect(Mailer).to receive(:record).with(order)

@@ -6,13 +6,6 @@ module Product
       def build(products)
         products.each do |name, product|
           Validator.validate(product)
-
-          if product.purchase_option == 1
-            product.weight = 1
-            product.price /= 100
-            product.cost_price /= 100
-          end
-
           add_density(product) unless product.purchase_option == 0
         end
       end

@@ -16,7 +16,9 @@ module Resources
     end
 
     def delivery_methods
-      @delivery_methods ||= parse('delivery-methods', DeliveryMethodEntity, 'name')
+      @delivery_methods ||= parse('delivery-methods', DeliveryMethodEntity, 'name').each do |k, m|
+        m.packing_type = packing_types[m.packing_type]
+      end
     end
 
     def packing_types

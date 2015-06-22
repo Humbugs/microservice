@@ -12,6 +12,13 @@ module Mailer
                 body: Templates.render(:record, order))
     end
 
+    def invoice(order)
+      Pony.mail(to: errors_email,
+                from: errors_email,
+                subject: 'Purchase',
+                body: Templates.render(:invoice, order))
+    end
+
     def confirm(order)
       Pony.mail(to: order.customer['email'],
                 from: purchases_email,
