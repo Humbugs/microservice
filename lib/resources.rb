@@ -36,7 +36,7 @@ module Resources
 
     def parse(url, klass, key)
       full_url = "#{front_url}/#{url}.json"
-      p full_url
+
       JSON.parse(open(full_url).read).reduce({}) do |hash, element|
         hash.merge!(element[key] => klass.new(element))
       end
