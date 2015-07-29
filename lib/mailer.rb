@@ -22,7 +22,7 @@ module Mailer
     def confirm(order)
       Pony.mail(to: order.customer['email'],
                 from: purchases_email,
-                subject: 'Jekyll-Store Order Confirmation',
+                subject: 'Humbugs Order Confirmation',
                 html_body: Templates.html_render(:confirm, order))
     end
 
